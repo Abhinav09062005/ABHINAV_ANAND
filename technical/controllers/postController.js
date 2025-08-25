@@ -1,5 +1,5 @@
 import {Post} from '../models/post'
-createPost=async(req,res)=>{
+export const createPost=async(req,res)=>{
     try {
         const {title,content}=req.body;
 
@@ -15,7 +15,7 @@ createPost=async(req,res)=>{
     }
 };
 
-getAllPosts=async(req,res)=>{
+export const getAllPosts=async(req,res)=>{
     try{
         const posts=await Post.find().populate('authorId','name email'); 
         res.status(200).json(posts);
@@ -24,7 +24,7 @@ getAllPosts=async(req,res)=>{
     }
 };
 
-getPostById=async(req,res)=>{
+export const getPostById=async(req,res)=>{
     try{
         const post=await Post.findById(req.params.id).populate('authorId','name email');
         if(!post){
@@ -35,4 +35,3 @@ getPostById=async(req,res)=>{
         res.status(500).json({message: 'fetvhing error',error: error.message});
     }
 };
-export default {createPost,getAllPosts,getPostById}
