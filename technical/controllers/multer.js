@@ -2,7 +2,7 @@ import multer from "multer";
 // take help from docs and google
 const storage = multer.diskStorage({
   destination: (req,file,a) => {
-    a(null, "uploads/");
+    a(null,"uploads/");
   },
   filename: (req, file, a) => {
     a(null,Date.now()+"-"+file.originalname);
